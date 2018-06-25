@@ -5,7 +5,7 @@ from main import db
 
 app = Flask(__name__)
 app.debug=True
-database = db()
+
 
 
 @app.route('/')
@@ -14,10 +14,12 @@ def hello_world():
 
 @app.route('/', methods=['POST'])
 def my_form_post():
+    database = db()
     name = request.form['name']
     surname = request.form['surname']
     name1=name+' '+surname
     database.commit(name,surname)
+    database.close()
     return render_template("main.html",name1=name1)
 
 
