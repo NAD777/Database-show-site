@@ -6,8 +6,6 @@ from main import db
 app = Flask(__name__)
 app.debug=True
 
-
-
 @app.route('/')
 def hello_world():
     return render_template('main.html',name1=" ")

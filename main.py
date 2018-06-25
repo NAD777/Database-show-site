@@ -20,7 +20,10 @@ class db:
         else:
             print('Nothing happend')
         self.conn.commit()
+    def get_list(self):
+        result = []
 
+        return result
     def new_base(self):
         self.cursor.execute("""CREATE TABLE  person (
             name text,
@@ -30,14 +33,11 @@ class db:
             self.conn.close()
 
 
-
-#name="Ilya"
-#surname="Kolomin"
-#Person1 = Person(name,surname)
-#database = db()
-#database.new_base()
-#database.commit('Anton','jopa')
-#database.get_date('name','Anton')
-#database.close()
+if __name__ == "__main__":
+    database = db()
+    #database.new_base()
+    #database.commit('Anton','jopa')
+    database.get_date('name','Anton')
+    database.close()
 
 
