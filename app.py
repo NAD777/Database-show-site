@@ -1,7 +1,11 @@
 from flask import Flask
 from flask import render_template
 from flask import request
+from main import db
+
 app = Flask(__name__)
+app.debug=True
+database = db()
 
 
 @app.route('/')
@@ -13,8 +17,9 @@ def my_form_post():
     name = request.form['name']
     surname = request.form['surname']
     name1=name+' '+surname
+    database.commit(name,surname)
     return render_template("main.html",name1=name1)
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run()
