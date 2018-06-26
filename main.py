@@ -5,10 +5,14 @@ class db:
         self.conn = sqlite3.connect('man.db',check_same_thread=False)  # person.db
         self.cursor = self.conn.cursor()
 
+    def write_unicode(self,text, charset='windows-1251'):
+        return text.encode(charset)
+
     def commit(self,name,surname):
         self.cursor.execute("INSERT INTO person VALUES (:name,:surname)",
                   {'name': name, 'surname': surname})
         self.conn.commit()
+
     def get_date(self,colomn,person,fetch='all'):
         self.cursor.execute("SELECT * FROM person WHERE "+colomn+'='+"'"+person+"'") # c.execute("SELECT * FROM  person WHERE id = 'Ilya'")
         if(fetch == 'all'):
@@ -20,10 +24,15 @@ class db:
         else:
             print('Nothing happend')
         self.conn.commit()
+
     def get_list(self):
         result = []
-
+        self.cursor.execute("select * from person")
+        for row in self.cursor.fetchall():
+            #result.append({'name':self.write_unicode(row[0]),'surname':self.write_unicode(row[1])})
+          result.append({'name': row[0], 'surname': row[1]})
         return result
+
     def new_base(self):
         self.cursor.execute("""CREATE TABLE  person (
             name text,
@@ -37,7 +46,8 @@ if __name__ == "__main__":
     database = db()
     #database.new_base()
     #database.commit('Anton','jopa')
-    database.get_date('name','Anton')
+    #database.get_date('name','Anton')
+    print(database.get_list())
     database.close()
 
 
