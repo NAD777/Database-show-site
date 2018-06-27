@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="ru">
+<head>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+<form method="POST">
+    <label for="namefield">Имя</label>
+    <input type="text" id="namefield" name="name">
+    <label for="surnamefield">Фамилия</label>
+    <input type="text" id="surnamefield" name="surname">
+    <input type="submit">
+</form>
+    <div class="container">
+	  <h2>Basic Table</h2>
+	  <table class="table">
+	    <thead>
+	      <tr>
+	        <th>Firstname</th>
+	        <th>Lastname</th>
+	      </tr>
+	    </thead>
+	    <tbody>
+{#	    	<tr>#}
+{#	    		<script>alert_date()</script>#}
+{#	    	</tr>#}
+            {% block date %}
+                {% for result in results %}
+                    <tr>
+                    <td>{{ result['name'] }}</td>
+                     <td>{{ result['surname'] }}</td>
+                    </tr>
+                {% endfor %}
+            {% endblock %}
+	    </tbody>
+	  </table>
+
+	</div>
+</body>
+</html>

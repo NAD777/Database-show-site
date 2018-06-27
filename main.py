@@ -26,12 +26,12 @@ class db:
         self.conn.commit()
 
     def get_list(self):
-        result = []
+        results = []
         self.cursor.execute("select * from person")
         for row in self.cursor.fetchall():
             #result.append({'name':self.write_unicode(row[0]),'surname':self.write_unicode(row[1])})
-          result.append({'name': row[0], 'surname': row[1]})
-        return result
+          results.append({'name': row[0], 'surname': row[1]})
+        return results
 
     def new_base(self):
         self.cursor.execute("""CREATE TABLE  person (

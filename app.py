@@ -8,7 +8,10 @@ app.debug=True
 
 @app.route('/')
 def hello_world():
-    return render_template('main.html',name1=" ")
+    database = db()
+    results = database.get_list()
+    database.close()
+    return render_template("index.html", results=results)
 
 @app.route('/', methods=['POST'])
 def my_form_post():
@@ -17,8 +20,9 @@ def my_form_post():
     surname = request.form['surname']
     name1=name+' '+surname
     database.commit(name,surname)
+    results = database.get_list()
     database.close()
-    return render_template("main.html",name1=name1)
+    return render_template("index.html",results=results)
 
 
 if __name__ == '__main__':
