@@ -16,10 +16,14 @@ def hello_world():
 @app.route('/', methods=['POST'])
 def my_form_post():
     database = db()
-    name = request.form['name']
-    surname = request.form['surname']
-    name1=name+' '+surname
-    database.commit(name,surname)
+    if(request.form['btn']=='Add'):
+        name = request.form['name']
+        surname = request.form['surname']
+        database.commit(name,surname)
+    elif(request.form['btn']=='Search'):
+        search = request.form['search']
+    else:
+        print('nothing happened')
     results = database.get_list()
     database.close()
     return render_template("index.html",results=results)

@@ -2,7 +2,7 @@ import sqlite3
 
 class db:
     def __init__(self):
-        self.conn = sqlite3.connect('man.db',check_same_thread=False)  # person.db
+        self.conn = sqlite3.connect('man.db',check_same_thread=True)  # person.db
         self.cursor = self.conn.cursor()
 
     def write_unicode(self,text, charset='windows-1251'):
@@ -14,16 +14,21 @@ class db:
         self.conn.commit()
 
     def get_date(self,colomn,person,fetch='all'):
+        results = []
         self.cursor.execute("SELECT * FROM person WHERE "+colomn+'='+"'"+person+"'") # c.execute("SELECT * FROM  person WHERE id = 'Ilya'")
         if(fetch == 'all'):
-            print(self.cursor.fetchall())
+            #print(self.cursor.fetchall())
+            for row in self.cursor.fetchall():
+                results.append({'name': row[0], 'surname': row[1]})
+            results.reverse()
         elif(fetch=='one'):
             print(self.cursor.fetchone())
         elif(fetch=='many'):
             print(self.cursor.fetchmany())
         else:
             print('Nothing happend')
-        self.conn.commit()
+        #self.conn.commit()
+        return results
 
     def get_list(self):
         results = []

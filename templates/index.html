@@ -17,6 +17,11 @@
 {#    <input class="btn" type="submit">#}
 {#</form>#}
 <form method="POST">
+    <label for="searchfield">Имя</label>
+    <input type="text" id="searchfield" name="search">
+    <input class="btn btn-primary" value="Search" type="submit" name="btn">
+</form>
+<form method="POST">
   <div class="form-group">
     <label for="name">Имя</label>
     <input type="text" class="form-control" id="namefield" aria-describedby="nameHelp" placeholder="Имя" name="name">
@@ -25,7 +30,7 @@
     <label for="surnamefield">Фамилия</label>
     <input type="text" class="form-control" id="surnamefield" name="surname" placeholder="Фамилия">
   </div>
-  <button type="submit" class="btn btn-primary">Подтвердить</button>
+  <input type="submit" value="Add" class="btn btn-primary" name="btn"></input>
 </form>
     <div class="container">
 	  <h2>Basic Table</h2>
