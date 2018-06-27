@@ -31,6 +31,7 @@ class db:
         for row in self.cursor.fetchall():
             #result.append({'name':self.write_unicode(row[0]),'surname':self.write_unicode(row[1])})
           results.append({'name': row[0], 'surname': row[1]})
+          results.reverse()
         return results
 
     def new_base(self):

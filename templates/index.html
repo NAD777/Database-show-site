@@ -9,12 +9,23 @@
 
 </head>
 <body>
+{#<form method="POST">#}
+{#    <label for="namefield">Имя</label>#}
+{#    <input type="text" id="namefield" name="name">#}
+{#    <label for="surnamefield">Фамилия</label>#}
+{#    <input type="text" id="surnamefield" name="surname">#}
+{#    <input class="btn" type="submit">#}
+{#</form>#}
 <form method="POST">
-    <label for="namefield">Имя</label>
-    <input type="text" id="namefield" name="name">
+  <div class="form-group">
+    <label for="name">Имя</label>
+    <input type="text" class="form-control" id="namefield" aria-describedby="nameHelp" placeholder="Имя" name="name">
+  </div>
+  <div class="form-group">
     <label for="surnamefield">Фамилия</label>
-    <input type="text" id="surnamefield" name="surname">
-    <input type="submit">
+    <input type="text" class="form-control" id="surnamefield" name="surname" placeholder="Фамилия">
+  </div>
+  <button type="submit" class="btn btn-primary">Подтвердить</button>
 </form>
     <div class="container">
 	  <h2>Basic Table</h2>
