@@ -16,6 +16,7 @@ def hello_world():
 @app.route('/', methods=['POST'])
 def my_form_post():
     database = db()
+    ############################## cheacking for main form
     if(request.form['btn']=='Add'):
         name = request.form['name']
         surname = request.form['surname']
@@ -28,6 +29,7 @@ def my_form_post():
         if (not surname):
             results = database.get_list()
             return render_template("index.html",results = results,result='surname not enter')
+        ########################## cheacking for main form
         database.commit(name,surname)
         results = database.get_list()
     elif(request.form['btn']=='Search'):
