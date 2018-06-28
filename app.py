@@ -19,6 +19,15 @@ def my_form_post():
     if(request.form['btn']=='Add'):
         name = request.form['name']
         surname = request.form['surname']
+        if(not name and not surname):
+            results = database.get_list()
+            return render_template("index.html",results = results,result='nothing enter')
+        if(not name):
+            results = database.get_list()
+            return render_template("index.html",results = results,result='name not enter')
+        if (not surname):
+            results = database.get_list()
+            return render_template("index.html",results = results,result='surname not enter')
         database.commit(name,surname)
         results = database.get_list()
     elif(request.form['btn']=='Search'):
@@ -29,7 +38,7 @@ def my_form_post():
         print('nothing happened')
 
     database.close()
-    return render_template("index.html",results=results)
+    return render_template("index.html",results=results,result = "all done")
 
 
 if __name__ == '__main__':
