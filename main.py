@@ -14,29 +14,30 @@ class db:
         self.conn.commit()
 
     def get_date(self,colomn,person,fetch='all'):
-        results = []
         self.cursor.execute("SELECT * FROM person WHERE "+colomn+'='+"'"+person+"'") # c.execute("SELECT * FROM  person WHERE id = 'Ilya'")
         if(fetch == 'all'):
-            #print(self.cursor.fetchall())
-            for row in self.cursor.fetchall():
-                results.append({'name': row[0], 'surname': row[1]})
-            results.reverse()
+            return self.cursor.fetchall()
         elif(fetch=='one'):
-            print(self.cursor.fetchone())
+            return self.cursor.fetchone()
         elif(fetch=='many'):
-            print(self.cursor.fetchmany())
+            return self.cursor.fetchmany()
         else:
             print('Nothing happend')
         #self.conn.commit()
-        return results
 
-    def get_list(self):
+    def get_list(self,search=''):
         results = []
-        self.cursor.execute("select * from person")
-        for row in self.cursor.fetchall():
-            #result.append({'name':self.write_unicode(row[0]),'surname':self.write_unicode(row[1])})
-          results.append({'name': row[0], 'surname': row[1]})
-          results.reverse()
+        if not search:
+            self.cursor.execute("select * from person")
+            for row in self.cursor.fetchall():
+                #result.append({'name':self.write_unicode(row[0]),'surname':self.write_unicode(row[1])})
+              results.append({'name': row[0], 'surname': row[1]})
+        elif search:
+            sp=['name','surname']
+            for i in sp:
+                for row in self.get_date(i,search):
+                    results.append({'name': row[0], 'surname': row[1]})
+        results.reverse()
         return results
 
     def new_base(self):
