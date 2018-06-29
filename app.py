@@ -13,10 +13,6 @@ def hello_world():
     database.close()
     return render_template("index.html", results=results)
 
-@app.route('/forming',methods=['GET'])
-def form():
-    return render_template('index.html',content='hello world')
-
 @app.route('/', methods=['POST'])
 def my_form_post():
     database = db()
@@ -27,7 +23,8 @@ def my_form_post():
         patronymic = request.form['patronymic']
         gender = request.form['gender']
         inspection = request.form['inspection']
-        print(name,' ',surname, ' ',patronymic,' ',gender,' ',inspection)
+        #print(name,' ',surname, ' ',patronymic,' ',gender,' ',inspection)
+        #############################
         if(not name and not surname):
             results = database.get_list()
             return render_template("index.html",results = results,result='nothing enter')
@@ -38,18 +35,16 @@ def my_form_post():
             results = database.get_list()
             return render_template("index.html",results = results,result='surname not enter')
         ########################## cheacking for main form
-        database.commit(name,surname)
+        database.commit(name,surname,patronymic,gender,inspection)
         results = database.get_list()
+        return render_template("index.html", results=results, result="all done")
     elif(request.form['btn']=='Search'):
         search = request.form['search']
         results = database.get_list(search)
         return render_template("index.html", results=results)
-        #dopisat poisk po db
     else:
         print('nothing happened')
-
     database.close()
-    return render_template("index.html",results=results,result = "all done")
 
 
 if __name__ == '__main__':

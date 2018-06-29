@@ -8,7 +8,7 @@
 </head>
 <body>
 
-<p>{{ result }}</p>
+{{ result }}
 <form method="POST">
 {#    <label for="searchfield">Поиск</label>#}
     <input type="text" class="form-control" id="searchfield" placeholder="Поиск" name="search">
@@ -52,6 +52,9 @@
                     <tr>
                     <td>{{ result['name'] }}</td>
                      <td>{{ result['surname'] }}</td>
+                    <td>{{ result['patronymic'] }}</td>
+                    <td>{{ result['gender'] }}</td>
+                    <td>{{ result['inspection'] }}</td>
                     </tr>
                 {% endfor %}
             {% endblock %}
