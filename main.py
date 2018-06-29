@@ -27,22 +27,6 @@ class db:
         else:
             print('Nothing happend')
         # self.conn.commit()
-
-    # def get_list(self, search=''):
-    #     results = []
-    #     if not search:
-    #         self.cursor.execute("select * from person")
-    #         for row in self.cursor.fetchall():
-    #             # result.append({'name':self.write_unicode(row[0]),'surname':self.write_unicode(row[1])})
-    #             results.append(
-    #                 {'name': row[0], 'surname': row[1], 'patronymic': row[2], 'gender': row[3], 'inspection': row[4]})
-    #         sp = ['name', 'surname', 'patronymic', 'gender', 'inspection']
-    #         for i in sp:
-    #             for row in self.get_date(i, search):
-    #                 results.append({'name': row[0], 'surname': row[1], 'patronymic': row[2], 'gender': row[3],
-    #                                 'inspection': row[4]})
-    #     results.reverse()
-    #     return results
     def get_list(self,search=''):
         results = []
         if not search:
