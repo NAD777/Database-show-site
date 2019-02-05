@@ -57,7 +57,7 @@ class db:
 if __name__ == "__main__":
     database = db()
     database.new_base()
-    # database.commit('Anton','jopa')
+    # database.commit('Anton','123')
     # database.get_date('name','Anton')
     # print(database.get_list())
     database.close()
